@@ -5,6 +5,6 @@
 * 登入註冊頁面在Signin.js
 * 因有更改到一些css，記得複製'semantic-ui-css/semantic.min.css'內容並覆蓋原本檔案內容;
 ## navbar and searchbar
-![image](https://user-images.githubusercontent.com/79859588/210774338-a6bdc7d3-c047-466e-93b2-23a3274dd3d2.png)
+![image](https://user-images.githubusercontent.com/79859588/210774769-1d58e646-f22d-4dd3-a35e-794f1b7e081f.png)
 ## login/register page
 ![image](https://user-images.githubusercontent.com/79859588/210774527-1171bfc3-bfba-437e-b30d-a4414927b272.png)
