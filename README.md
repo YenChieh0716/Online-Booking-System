@@ -3,7 +3,9 @@
 * npm install semantic-ui-react semantic-ui-css react-router-dom 
 * 引用導覽列 navbar.js和header.js一起include
 * 登入註冊頁面在Signin.js
-* 因有更改到一些css，記得複製'semantic.min.cs'內容並覆蓋原本檔案內容('node_modules/semantic-ui-css/semantic.min.css');
+* 因有更改到一些css，記得複製'semantic.min.cs'內容並覆蓋原本檔案內容('node_modules/semantic-ui-css/semantic.min.css')
+## firebase 設定
+建構 -> Authentication -> 在Sigin-in method選電子郵件/密碼的編輯設定->啟用
 ## navbar and searchbar
 ![image](https://user-images.githubusercontent.com/79859588/210774769-1d58e646-f22d-4dd3-a35e-794f1b7e081f.png)
 ## login/register page
