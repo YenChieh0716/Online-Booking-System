@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Signin from "./pages/Signin";
-import Navbar from "./Navbar";
+import Navbar from "./navbar";
 function App() {
   return (
     <BrowserRouter>
