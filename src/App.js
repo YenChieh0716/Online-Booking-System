@@ -1,9 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import Header from './header';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Signin from './pages/Signin';
-import Navbar from './navbar';
+import "./App.css";
+import Header from "./header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Signin from "./pages/Signin";
+import Navbar from "./Navbar";
 function App() {
   return (
     <BrowserRouter>
