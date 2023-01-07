@@ -1,8 +1,8 @@
 # Online-Booking-System
-
 ## 安裝套件
-
+- 在full-react-app裡 npm install
 - npm install semantic-ui-react semantic-ui-css react-router-dom
+- npm start
 - 引用導覽列 navbar.js 和 header.js 一起 include
 - 登入註冊頁面在 Signin.js
 - 因有更改到一些 css，記得複製'semantic.min.cs'內容並覆蓋原本檔案內容('node_modules/semantic-ui-css/semantic.min.css')
