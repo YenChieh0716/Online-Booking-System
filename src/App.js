@@ -1,16 +1,25 @@
-import "./App.css";
-import Header from "./header";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./Layout";
+import Home from "./pages/Home";
 import Signin from "./pages/Signin";
-import Navbar from "./navbar";
+import BookDetail from "./pages/BookDetail";
+import BookManage from "./pages/BookManage";
+import BookLaunch from "./pages/BookLaunch";
+import NoMatch from "./pages/NoMatch";
+
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <Navbar />
       <Routes>
-        <Route path='/' exact element={'首頁'}></Route>
-        <Route path='/Signin' exact element={<Signin />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="signin" element={<Signin />} />
+          <Route path="bookDetail" element={<BookDetail />} />
+          <Route path="bookManage" element={<BookManage />} />
+          <Route path="bookLaunch" element={<BookLaunch />} />
+          <Route path="*" element={<NoMatch />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
