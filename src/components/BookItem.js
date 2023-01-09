@@ -1,55 +1,38 @@
 import React from "react";
-import { List } from "semantic-ui-react";
-import { firestore } from "../database/firebase";
-import { collection, onSnapshot, doc, setDoc, query } from "firebase/firestore";
+import firebase from "../database/firebase";
+import {
+  Item,
+  Card,
+  Icon,
+  Image,
+  Label,
+  Button,
+  Container,
+} from "semantic-ui-react";
 
-// import Grid from "@mui/material/Grid";
-// import Card from "@mui/material/Card";
-// import CardMedia from "@mui/material/CardMedia";
-// import CardContent from "@mui/material/CardContent";
-// import Typography from "@mui/material/Typography";
-
-function BookItem(props) {
-  const [bookName, setBookName] = React.useState([]);
-  const [bookAuthor, setBookAuthor] = React.useState([]);
-
-  const getBookContents = () => {
-    const q = query(collection(firestore, "books"));
-    onSnapshot(q, (querySnapshot) => {
-      const books = [];
-      querySnapshot.forEach((doc) => {
-        books.push(doc.data());
-      });
-      setBookName(books);
-    });
-  };
-
-  React.useEffect(() => {
-    getBookContents();
-  }, []);
+function BookItem(book, user) {
   return (
-    <List animated selection>
-      {bookName.map((book) => {
-        return <List.Item key={book.name}>{book.name}</List.Item>;
-      })}
-    </List>
+    <Item>
+      <Item.Image
+        src={
+          book.bookCoverUrl ||
+          "https://react.semantic-ui.com/images/wireframe/image.png"
+        }
+        size="small"
+        rounded
+        style={{ height: "130px" }}
+      ></Item.Image>
+      <Item.Content>
+        <Item.Header style={{ height: "25px" }}>{book.bookName}</Item.Header>
+        <Button secondary size="tiny" floated="right">
+          <Button.Content>
+            <Icon name="edit outline"></Icon>
+            編輯
+          </Button.Content>
+        </Button>
+      </Item.Content>
+    </Item>
   );
-  //   return (
-  //     <Grid item xs={12} sm={6} md={4}>
-  //       <Card sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
-  //         <CardMedia
-  //           component="img"
-  //           img="https://source.unsplash.com/random"
-  //           alt="random"
-  //         />
-  //         <CardContent sx={{ flexGrow: 1 }}>
-  //           <Typography gutterBottom variant="h5" component="h2">
-  //             {props.post}
-  //           </Typography>
-  //         </CardContent>
-  //       </Card>
-  //     </Grid>
-  //   );
 }
 
 export default BookItem;

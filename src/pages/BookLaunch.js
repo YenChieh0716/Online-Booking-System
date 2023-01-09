@@ -1,10 +1,10 @@
 import React from "react";
+import firebase from "../database/firebase";
+import "firebase/compat/firestore";
+import "firebase/compat/storage";
+import "firebase/compat/auth";
 import { Container, Header, Form, Image, Button } from "semantic-ui-react";
-import { firestore, storage } from "../database/firebase";
-import { collection, onSnapshot, doc, setDoc, query } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
-import { v4 } from "uuid";
 
 function BookLaunch() {
   const navigate = useNavigate();
@@ -13,22 +13,21 @@ function BookLaunch() {
   const [bookAuthor, setBookAuthor] = React.useState("");
   const [bookType, setBookType] = React.useState("");
   const [bookCover, setBookCover] = React.useState(null);
-  const [bookID, setBookID] = React.useState("");
   const [categories, setCategories] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const getCategories = () => {
-    const q = query(collection(firestore, "categories"));
-    onSnapshot(q, (querySnapshot) => {
-      const categories = [];
-      querySnapshot.forEach((doc) => {
-        categories.push(doc.data());
+  React.useEffect(() => {
+    firebase
+      .firestore()
+      .collection("categories")
+      .get()
+      .then((collectionSnapshot) => {
+        const data = collectionSnapshot.docs.map((doc) => {
+          return doc.data();
+        });
+        setCategories(data);
       });
-      setCategories(categories);
-    });
-  };
-
-  getCategories();
+  }, []);
 
   const options = categories.map((category) => {
     return {
@@ -41,43 +40,66 @@ function BookLaunch() {
     ? URL.createObjectURL(bookCover)
     : "https://react.semantic-ui.com/images/wireframe/image.png";
 
-  const addImage = async () => {
-    const storageRef = ref(storage, `post-images/${bookID}`);
-    await uploadBytes(storageRef, bookCover);
-  };
-
-  const addBook = async () => {
-    if (bookCover == null) {
-      alert("請上傳圖片");
-      return;
+  function addBook() {
+    const bookCoverUrl = "";
+    setIsLoading(true);
+    debugger;
+    const bookRef = firebase.firestore().collection("books").doc();
+    if (bookCover) {
+      const coverRef = firebase.storage().ref("post-images/" + bookRef.id);
+      const metadata = {
+        contentType: bookCover.type,
+      };
+      coverRef.put(bookCover, metadata).then(() => {
+        coverRef.getDownloadURL().then((imageUrl) => {
+          bookRef
+            .set({
+              bookName,
+              bookISBN,
+              bookAuthor,
+              bookType,
+              bookCoverUrl: imageUrl,
+            })
+            .then(() => {
+              alert("新增成功");
+              setIsLoading(false);
+              navigate("/bookManage");
+            });
+        });
+      });
     } else {
-      addImage();
+      bookRef
+        .set({
+          bookName,
+          bookISBN,
+          bookAuthor,
+          bookType,
+          bookCoverUrl:
+            "https://react.semantic-ui.com/images/wireframe/image.png",
+        })
+        .then(() => {
+          alert("新增成功");
+          setIsLoading(false);
+          navigate("/bookManage");
+        });
     }
 
-    setIsLoading(true);
-
-    if (
-      bookName !== "" &&
-      bookISBN != "" &&
-      bookAuthor !== "" &&
-      bookType !== ""
-    ) {
-      await setDoc(doc(firestore, "books", bookName), {
-        bookID,
+    bookRef
+      .set({
         bookName,
         bookISBN,
         bookAuthor,
         bookType,
+        bookCoverUrl: bookCoverUrl
+          ? bookCoverUrl
+          : "https://react.semantic-ui.com/images/wireframe/image.png",
+      })
+      .then(() => {
+        alert("新增成功");
+        setIsLoading(false);
+        navigate("/bookManage");
       });
-      setBookName("");
-      setBookISBN("");
-      setBookAuthor("");
-      setBookType("");
-      alert("新增成功");
-      setIsLoading(false);
-      navigate("/bookManage");
-    } else alert("所有欄位必填");
-  };
+  }
 
   return (
     <Container>
@@ -93,7 +115,6 @@ function BookLaunch() {
           style={{ display: "none" }}
           onChange={(e) => {
             setBookCover(e.target.files[0]);
-            setBookID(v4());
           }}
         ></Form.Input>
         <Form.Input
