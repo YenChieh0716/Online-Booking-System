@@ -2,11 +2,9 @@ import React from "react";
 import firebase from "../database/firebase";
 import {
   Grid,
-  Item,
   Button,
   Container,
   Segment,
-  Image,
   Card,
   Menu,
 } from "semantic-ui-react";
