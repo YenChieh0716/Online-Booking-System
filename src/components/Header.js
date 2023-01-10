@@ -1,7 +1,8 @@
 import React from "react";
-import { Menu, Search } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { getAuth } from "firebase/auth";
+import Searchbar from "./Searchbar";
 
 function Header() {
   const [user, setUser] = React.useState(null);
@@ -18,19 +19,7 @@ function Header() {
         BookSystem
       </Menu.Item>
       <Menu.Menu>
-        <div className="ui right aligned category search item">
-          <div className="ui transparent icon input">
-            <input
-              className="prompt"
-              type="text"
-              placeholder="Search animals..."
-              size="30"
-              maxLength="30"
-            />
-            <i className="search link icon" />
-          </div>
-          <div className="results" />
-        </div>
+        <Searchbar />
       </Menu.Menu>
       <Menu.Menu position="right">
         {user ? (

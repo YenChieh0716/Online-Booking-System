@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="signin" element={<Signin />} />
-          <Route path="bookDetail" element={<BookDetail />} />
+          <Route path="bookDetail/:bookId" element={<BookDetail />} />
           <Route path="bookManage" element={<BookManage />} />
           <Route path="bookManage/bookLaunch" element={<BookLaunch />} />
           <Route path="*" element={<NoMatch />} />
