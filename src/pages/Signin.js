@@ -11,6 +11,7 @@ function Signin() {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = React.useState("register");
   const [email, setEmail] = React.useState("");
+  const [identity, setIdentity] = React.useState("user");
   const [password, setPassword] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
@@ -98,6 +99,7 @@ function Signin() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="請輸入信箱"
+          required
         />
         <Form.Input
           label="密碼"
@@ -105,6 +107,12 @@ function Signin() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="請輸入密碼"
           type="password"
+          required
+        />
+        <Form.Input
+          value={identity}
+          onChange={(e) => setIdentity(e.target.value)}
+          style={{ display: "none" }}
         />
         {errorMessage && <Message negative>{errorMessage}</Message>}
         <Form.Button loading={isLoading}>

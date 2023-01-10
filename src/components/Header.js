@@ -14,9 +14,9 @@ function Header() {
   }, []);
 
   return (
-    <Menu secondary>
+    <Menu secondary style={{ margin: "5px 0px 0px 0px" }}>
       <Menu.Item as={Link} to="/">
-        BookSystem
+        Online Book System
       </Menu.Item>
       <Menu.Menu>
         <Searchbar />
@@ -24,7 +24,7 @@ function Header() {
       <Menu.Menu position="right">
         {user ? (
           <>
-            <Menu.Item as={Link} to="/user">
+            <Menu.Item as={Link} to="/userSet">
               用戶
             </Menu.Item>
             <Menu.Item onClick={() => auth.signOut()}>登出</Menu.Item>

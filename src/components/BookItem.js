@@ -7,7 +7,7 @@ function BookItem(book, user) {
     <Card
       key={book.id}
       as={Link}
-      to={`/bookDetail/${book.id}`}
+      to={`/bookManage/bookEdit/${book.id}`}
       style={{ width: "135px", height: "250px" }}
       centered
     >

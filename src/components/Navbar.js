@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <Menu>
+    <Menu style={{ margin: "5px 0px 10px 0px" }}>
       <Menu.Item as={Link} to="/bookManage">
         Book Manage
       </Menu.Item>

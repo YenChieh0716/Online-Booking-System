@@ -43,7 +43,6 @@ function BookLaunch() {
   function addBook() {
     const bookCoverUrl = "";
     setIsLoading(true);
-    debugger;
     const bookRef = firebase.firestore().collection("books").doc();
     if (bookCover) {
       const coverRef = firebase.storage().ref("post-images/" + bookRef.id);
@@ -103,7 +102,13 @@ function BookLaunch() {
 
   return (
     <Container>
-      <Header>新增書籍</Header>
+      <Header
+        style={{
+          margin: "20px 0px 20px 0px",
+        }}
+      >
+        新增書籍
+      </Header>
       <Form onSubmit={addBook}>
         <Image src={previewUrl} size="small" floated="left" />
         <Button basic as="label" htmlFor="post-image">
@@ -116,6 +121,7 @@ function BookLaunch() {
           onChange={(e) => {
             setBookCover(e.target.files[0]);
           }}
+          required
         ></Form.Input>
         <Form.Input
           label="書名"
@@ -124,6 +130,7 @@ function BookLaunch() {
           onChange={(e) => {
             setBookName(e.target.value);
           }}
+          required
         ></Form.Input>
         <Form.Input
           label="ISBN"
@@ -132,6 +139,7 @@ function BookLaunch() {
           onChange={(e) => {
             setBookISBN(e.target.value);
           }}
+          required
         ></Form.Input>
         <Form.Input
           label="作者"
@@ -140,6 +148,7 @@ function BookLaunch() {
           onChange={(e) => {
             setBookAuthor(e.target.value);
           }}
+          required
         ></Form.Input>
         <Form.Dropdown
           label="分類"
@@ -148,6 +157,7 @@ function BookLaunch() {
           selection
           value={bookType}
           onChange={(e, { value }) => setBookType(value)}
+          required
         ></Form.Dropdown>
         <Form.Button loading={isLoading}>新增</Form.Button>
       </Form>

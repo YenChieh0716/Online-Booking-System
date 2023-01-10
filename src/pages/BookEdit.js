@@ -2,18 +2,28 @@ import React from "react";
 import firebase from "../database/firebase";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
-import { Container, Grid, Segment, Form, Item } from "semantic-ui-react";
-import Category from "../components/Category";
+import "firebase/auth";
+import { useParams } from "react-router-dom";
+import {
+  Container,
+  Header,
+  Grid,
+  Segment,
+  Form,
+  Item,
+  Button,
+} from "semantic-ui-react";
 
-function BookDetail() {
-  const { bookId } = React.useParams();
+function BookEdit() {
+  const { bookId } = useParams();
   const [book, setBook] = React.useState({});
-  const [editName, setEditName] = React.useState("");
-  const [editISBN, setEditISBN] = React.useState("");
-  const [editAuthor, setEditAuthor] = React.useState("");
-  const [editType, setEditType] = React.useState("");
+  const [editName, setEditName] = React.useState(book.bookName);
+  const [editISBN, setEditISBN] = React.useState(book.bookISBN);
+  const [editAuthor, setEditAuthor] = React.useState(book.bookAuthor);
+  const [editType, setEditType] = React.useState(book.bookType);
   const [categories, setCategories] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isEditing, setIsEditing] = React.useState(false);
+  const [isDeleting, setIsDeleting] = React.useState(false);
 
   React.useEffect(() => {
     firebase
@@ -47,18 +57,26 @@ function BookDetail() {
     };
   });
 
+  function editBook() {
+    setIsEditing(true);
+  }
+  function deleteBook() {
+    setIsDeleting(true);
+  }
+
   return (
-    <Container fluid>
+    <Container>
+      <Header
+        style={{
+          margin: "20px 20px 20px 0px",
+        }}
+      >
+        新增書籍
+      </Header>
       <Grid>
-        <Grid.Row width={1} />
         <Grid.Row stretched>
-          <Grid.Column width={2}>
-            <Segment>
-              <Category />
-            </Segment>
-          </Grid.Column>
           {/* 書籍明細 */}
-          <Grid.Column width={14}>
+          <Grid.Column>
             <Item.Group>
               <Item>
                 <Item.Image
@@ -69,23 +87,21 @@ function BookDetail() {
                   size="medium"
                 />
                 <Item.Content>
-                  <Item.Header>
-                    <h1>{book.bookName}</h1>
-                  </Item.Header>
                   <Item.Meta>
                     <Segment>
                       <Form>
                         <Form.Input
                           label="書名"
-                          placeholder={book.bookName}
+                          placeholder="輸入書名"
                           value={editName}
                           onChange={(e) => {
                             setEditName(e.target.value);
                           }}
                         ></Form.Input>
+
                         <Form.Input
                           label="ISBN"
-                          placeholder={book.bookISBN}
+                          placeholder="輸入ISBN"
                           value={editISBN}
                           onChange={(e) => {
                             setEditISBN(e.target.value);
@@ -93,7 +109,7 @@ function BookDetail() {
                         ></Form.Input>
                         <Form.Input
                           label="作者"
-                          placeholder={book.bookAuthor}
+                          placeholder="輸入作者"
                           value={editAuthor}
                           onChange={(e) => {
                             setEditAuthor(e.target.value);
@@ -101,14 +117,29 @@ function BookDetail() {
                         ></Form.Input>
                         <Form.Dropdown
                           label="分類"
-                          placeholder={book.bookType}
+                          placeholder="選擇書籍分類"
                           options={options}
                           selection
                           value={editType}
                           onChange={(e, { value }) => setEditType(value)}
                         ></Form.Dropdown>
+                        <div>
+                          <Button
+                            positive
+                            loading={isEditing}
+                            onClick={editBook}
+                          >
+                            修改
+                          </Button>
+                          <Button
+                            negative
+                            loading={isDeleting}
+                            onClick={deleteBook}
+                          >
+                            刪除
+                          </Button>
+                        </div>
                       </Form>
-                      <Form.Button loading={isLoading}>修改</Form.Button>
                     </Segment>
                   </Item.Meta>
                 </Item.Content>
@@ -121,4 +152,4 @@ function BookDetail() {
   );
 }
 
-export default BookDetail;
+export default BookEdit;
