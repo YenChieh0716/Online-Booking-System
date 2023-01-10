@@ -6,15 +6,12 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAm8vjt3pjrcrg6pI4QFNOlsTWHg0bk29s",
-  authDomain: "ntut-web-d95c1.firebaseapp.com",
-  databaseURL:
-    "https://ntut-web-d95c1-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "ntut-web-d95c1",
-  storageBucket: "ntut-web-d95c1.appspot.com",
-  messagingSenderId: "601478556525",
-  appId: "1:601478556525:web:9a898b3a3cb8f9b71cc864",
-  measurementId: "G-PZ2X170SYG",
+  apiKey: "AIzaSyBDbNtAemE1FfSuIiqecs3obaHH3ZwRQAM",
+  authDomain: "online-booking-system-754dc.firebaseapp.com",
+  projectId: "online-booking-system-754dc",
+  storageBucket: "online-booking-system-754dc.appspot.com",
+  messagingSenderId: "335041191531",
+  appId: "1:335041191531:web:211b158c5fbde1967c9b2e",
 };
 
 // Initialize Firebase
