@@ -17,13 +17,18 @@ import {
 function BookEdit() {
   const { bookId } = useParams();
   const [book, setBook] = React.useState({});
-  const [editName, setEditName] = React.useState(book.bookName);
-  const [editISBN, setEditISBN] = React.useState(book.bookISBN);
-  const [editAuthor, setEditAuthor] = React.useState(book.bookAuthor);
-  const [editType, setEditType] = React.useState(book.bookType);
+  const [editName, setEditName] = React.useState("");
+  const [editISBN, setEditISBN] = React.useState("");
+  const [editAuthor, setEditAuthor] = React.useState("");
+  const [editType, setEditType] = React.useState("");
   const [categories, setCategories] = React.useState([]);
   const [isEditing, setIsEditing] = React.useState(false);
   const [isDeleting, setIsDeleting] = React.useState(false);
+
+  let defaultName = "",
+    defaultISBN = "",
+    defaultAuthor = "",
+    defaultType = "";
 
   React.useEffect(() => {
     firebase
@@ -33,7 +38,14 @@ function BookEdit() {
       .get()
       .then((docSnapshot) => {
         const data = docSnapshot.data();
-        setBook(data);
+        if (!book.bookName) {
+          setBook(data);
+          document.getElementById("bookName").value = data.bookName;
+          document.getElementById("bookISBN").value = data.bookISBN;
+          document.getElementById("bookAuthor").value = data.bookAuthor;
+          document.getElementById("bookType").value = data.bookType;
+          document.getElementById("bookType").value(data.bookType).selection();
+        }
       });
   });
 
@@ -91,36 +103,36 @@ function BookEdit() {
                     <Segment>
                       <Form>
                         <Form.Input
+                          id="bookName"
                           label="書名"
                           placeholder="輸入書名"
-                          value={editName}
                           onChange={(e) => {
                             setEditName(e.target.value);
                           }}
                         ></Form.Input>
 
                         <Form.Input
+                          id="bookISBN"
                           label="ISBN"
                           placeholder="輸入ISBN"
-                          value={editISBN}
                           onChange={(e) => {
                             setEditISBN(e.target.value);
                           }}
                         ></Form.Input>
                         <Form.Input
+                          id="bookAuthor"
                           label="作者"
                           placeholder="輸入作者"
-                          value={editAuthor}
                           onChange={(e) => {
                             setEditAuthor(e.target.value);
                           }}
                         ></Form.Input>
                         <Form.Dropdown
+                          id="bookType"
                           label="分類"
                           placeholder="選擇書籍分類"
                           options={options}
                           selection
-                          value={editType}
                           onChange={(e, { value }) => setEditType(value)}
                         ></Form.Dropdown>
                         <div>

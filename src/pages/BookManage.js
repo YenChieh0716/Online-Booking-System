@@ -35,6 +35,7 @@ function BookManage() {
             return { ...docSnapshot.data(), id };
           });
           setBooks(data);
+          console.log(data);
         });
     } else {
       firebase
@@ -48,6 +49,7 @@ function BookManage() {
             return { ...docSnapshot.data(), id };
           });
           setBooks(data);
+          console.log(data);
         });
     }
   }, [currentType]);

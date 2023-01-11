@@ -6,12 +6,12 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBDbNtAemE1FfSuIiqecs3obaHH3ZwRQAM",
-  authDomain: "online-booking-system-754dc.firebaseapp.com",
-  projectId: "online-booking-system-754dc",
-  storageBucket: "online-booking-system-754dc.appspot.com",
-  messagingSenderId: "335041191531",
-  appId: "1:335041191531:web:211b158c5fbde1967c9b2e",
+  apiKey: "AIzaSyA9ZuzkPKMF0TS4DrDC3bp-5mitU_4QqsU",
+  authDomain: "online-booking-system3.firebaseapp.com",
+  projectId: "online-booking-system3",
+  storageBucket: "online-booking-system3.appspot.com",
+  messagingSenderId: "296912516543",
+  appId: "1:296912516543:web:eafb1c8625eb1277f25d0a",
 };
 
 // Initialize Firebase
