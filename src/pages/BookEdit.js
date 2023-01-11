@@ -13,8 +13,10 @@ import {
   Item,
   Button,
 } from "semantic-ui-react";
+import { useNavigate } from "react-router-dom";
 
 function BookEdit() {
+  const navigate = useNavigate();
   const { bookId } = useParams();
   const [book, setBook] = React.useState({});
   const [editName, setEditName] = React.useState("");
@@ -24,11 +26,6 @@ function BookEdit() {
   const [categories, setCategories] = React.useState([]);
   const [isEditing, setIsEditing] = React.useState(false);
   const [isDeleting, setIsDeleting] = React.useState(false);
-
-  let defaultName = "",
-    defaultISBN = "",
-    defaultAuthor = "",
-    defaultType = "";
 
   React.useEffect(() => {
     firebase
@@ -40,11 +37,14 @@ function BookEdit() {
         const data = docSnapshot.data();
         if (!book.bookName) {
           setBook(data);
+          setEditName(data.bookName);
+          setEditISBN(data.bookISBN);
+          setEditAuthor(data.bookAuthor);
+          setEditType(data.bookType);
           document.getElementById("bookName").value = data.bookName;
           document.getElementById("bookISBN").value = data.bookISBN;
           document.getElementById("bookAuthor").value = data.bookAuthor;
           document.getElementById("bookType").value = data.bookType;
-          document.getElementById("bookType").value(data.bookType).selection();
         }
       });
   });
@@ -71,9 +71,35 @@ function BookEdit() {
 
   function editBook() {
     setIsEditing(true);
+    const bookRef = firebase.firestore().collection("books").doc(bookId);
+    bookRef
+      .set({
+        bookName: editName,
+        bookISBN: editISBN,
+        bookAuthor: editAuthor,
+        bookType: editType,
+        bookCoverUrl: book.bookCoverUrl
+          ? book.bookCoverUrl
+          : "https://react.semantic-ui.com/images/wireframe/image.png",
+      })
+      .then(() => {
+        alert("修改成功");
+        setIsEditing(false);
+        navigate("/bookManage");
+      });
   }
   function deleteBook() {
     setIsDeleting(true);
+    firebase
+      .firestore()
+      .collection("books")
+      .doc(bookId)
+      .delete()
+      .then(() => {
+        alert("刪除成功");
+        setIsDeleting(false);
+        navigate("/bookManage");
+      });
   }
 
   return (
@@ -130,6 +156,7 @@ function BookEdit() {
                         <Form.Dropdown
                           id="bookType"
                           label="分類"
+                          value={book.bookType}
                           placeholder="選擇書籍分類"
                           options={options}
                           selection

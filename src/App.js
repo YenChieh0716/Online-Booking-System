@@ -8,6 +8,8 @@ import BookEdit from "./pages/BookEdit";
 import BookManage from "./pages/BookManage";
 import BookLaunch from "./pages/BookLaunch";
 import NoMatch from "./pages/NoMatch";
+import UserManage from "./pages/UserManage";
+import UserEdit from "./pages/UserEdit";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="bookManage/bookEdit/:bookId" element={<BookEdit />} />
           <Route path="bookManage" element={<BookManage />} />
           <Route path="bookManage/bookLaunch" element={<BookLaunch />} />
+          <Route path="userManage" element={<UserManage />} />
+          <Route path="userManage/userEdit/:userId" element={<UserEdit />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
