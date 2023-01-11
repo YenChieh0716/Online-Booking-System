@@ -8,6 +8,8 @@ import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyA9ZuzkPKMF0TS4DrDC3bp-5mitU_4QqsU",
   authDomain: "online-booking-system3.firebaseapp.com",
+  databaseURL:
+    "https://online-booking-system3-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "online-booking-system3",
   storageBucket: "online-booking-system3.appspot.com",
   messagingSenderId: "296912516543",
