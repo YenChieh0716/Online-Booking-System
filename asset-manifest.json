@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Online-Booking-System/static/css/main.c5ba1f1f.css",
-    "main.js": "/Online-Booking-System/static/js/main.d7576333.js",
+    "main.css": "/Online-Booking-System/static/css/main.bba1ccca.css",
+    "main.js": "/Online-Booking-System/static/js/main.8d328702.js",
     "static/media/brand-icons.svg": "/Online-Booking-System/static/media/brand-icons.6729d29753e000c17489.svg",
     "static/media/icons.svg": "/Online-Booking-System/static/media/icons.62d9dae4e0040e81c980.svg",
     "static/media/outline-icons.svg": "/Online-Booking-System/static/media/outline-icons.9c4845b4b41ef40a22fa.svg",
@@ -19,11 +19,11 @@
     "static/media/outline-icons.woff": "/Online-Booking-System/static/media/outline-icons.ddae9b1ba9b0b42f5880.woff",
     "static/media/outline-icons.woff2": "/Online-Booking-System/static/media/outline-icons.687a4990ea22bb1a49d4.woff2",
     "index.html": "/Online-Booking-System/index.html",
-    "main.c5ba1f1f.css.map": "/Online-Booking-System/static/css/main.c5ba1f1f.css.map",
-    "main.d7576333.js.map": "/Online-Booking-System/static/js/main.d7576333.js.map"
+    "main.bba1ccca.css.map": "/Online-Booking-System/static/css/main.bba1ccca.css.map",
+    "main.8d328702.js.map": "/Online-Booking-System/static/js/main.8d328702.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5ba1f1f.css",
-    "static/js/main.d7576333.js"
+    "static/css/main.bba1ccca.css",
+    "static/js/main.8d328702.js"
   ]
 }
