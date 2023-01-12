@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Searchbar() {
   return (
@@ -7,11 +8,11 @@ function Searchbar() {
         <input
           className="prompt"
           type="text"
-          placeholder="Search animals..."
+          placeholder="search for books"
           size="30"
           maxLength="30"
         />
-        <i className="search link icon" />
+        <i as={Link} to="/searchResult" className="search link icon"  />
       </div>
       <div className="results" />
     </div>

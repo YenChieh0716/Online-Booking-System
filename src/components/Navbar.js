@@ -11,6 +11,9 @@ function Navbar() {
       <Menu.Item as={Link} to="/userManage">
         User Manage
       </Menu.Item>
+      <Menu.Item position="right" as={Link} to="/bookCart">
+        Book Cart
+      </Menu.Item>
     </Menu>
   );
 }
