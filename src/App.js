@@ -11,7 +11,7 @@ import NoMatch from "./pages/NoMatch";
 import UserManage from "./pages/UserManage";
 import UserEdit from "./pages/UserEdit";
 import BookCart from "./pages/BookCart";
-import SearchResult from "./pages/SearchResult";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
           <Route path="userManage" element={<UserManage />} />
           <Route path="userManage/userEdit/:userId" element={<UserEdit />} />
           <Route path="bookCart" element={<BookCart/>} />
-          <Route path="searchResult" element={<SearchResult/>}/>
+          <Route path="searchPage" element={<SearchPage/>}/>
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
