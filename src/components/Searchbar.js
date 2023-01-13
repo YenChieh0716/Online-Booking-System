@@ -33,4 +33,6 @@ const Searchbar = () => {
     );
 }
 
+// https://bobbyhadz.com/blog/react-pass-data-from-child-to-parent
+
 export default Searchbar;
