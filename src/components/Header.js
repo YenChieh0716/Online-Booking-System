@@ -19,7 +19,7 @@ function Header() {
         Online Book System
       </Menu.Item>
       <Menu.Menu>
-        <Menu.Item as={Link} to="/searchPage">
+        <Menu.Item as={Link} to="/search">
           Search for Books &nbsp;
           <i className="search link icon"  />
         </Menu.Item>

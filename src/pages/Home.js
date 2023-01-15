@@ -38,6 +38,7 @@ function Home() {
             return { ...docSnapshot.data(), id };
           });
           setBooks(data);
+          // console.log(data);
         });
     }
   }, [currentType]);

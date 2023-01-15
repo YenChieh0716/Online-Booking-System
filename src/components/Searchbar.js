@@ -2,35 +2,42 @@ import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const Searchbar = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
+class Searchbar extends React.Component {
 
-  const handleSubmit = (event) => {
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      query: ""
+    }
+  }
 
-  return (
-    <div className="ui right aligned category search item">
-      <form onSubmit={handleSubmit}>
-        <label>
-          <div className="ui transparent icon input">
-            <input
-              name="query"
-              className="prompt"
-              type="text"
-              placeholder="search for books"
-              size="30"
-              maxLength="30"
+  handleChange(event) {
+    this.props.onQuery(event.target.value);
+    // console.log("(search bar)" + event.target.value);
+  }
 
-            />
-            <i as={Link} to="/searchResult" className="search link icon" />
-          </div>
-        </label>
-      </form>
-      <div className="results" />
-      <h2>{searchParams.get('query')}</h2>
-    </div>
-    );
+  render() {
+    return (
+      <div className="search-bar">
+        <form >
+          <label>
+            <div className="ui transparent icon input">
+              <input
+                name="query"
+                className="prompt"
+                type="text"
+                placeholder="search for books"
+                size="30"
+                maxLength="100"
+                onChange={this.handleChange.bind(this)}
+              />
+              {/* <i className="search link icon"/> */}
+            </div>
+          </label>
+        </form>
+      </div>
+    )
+  }
 }
 
 // https://bobbyhadz.com/blog/react-pass-data-from-child-to-parent
