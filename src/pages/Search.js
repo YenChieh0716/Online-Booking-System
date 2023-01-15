@@ -28,7 +28,6 @@ class Search extends React.Component {
     console.log("query: ", q);
     this.getBooks(q);
     this.setState({'query': q})
-    // this.render();
   }
 
   getBooks(b) {
@@ -49,30 +48,27 @@ class Search extends React.Component {
         });
         // console.log(data[0]);
         this.setBooks(data);
+
         // console.log(this.state.books);
       });
   }
 
   render() {
-    // console.log("render");
     return (
       <Container>
         <div className="search">
           <div className="search-Bar">
             <Searchbar onQuery={this.handleQuery.bind(this)} />
             <p>" {this.state.query} " search result : </p>
+            {/* <BookItem {...this.state.books[0]} key={this.state.books.id}/> */}
           </div>
           <div className="results">
             <Grid.Row>
               <Segment>
                 <Grid columns={7}>
-                  {this.state.books.map((book) => (
-                    <Grid.Column centered>
-                      <Card.Group>
-                        <BookItem {...book[0]} key={book[0].id} />
-                      </Card.Group>
-                    </Grid.Column>
-                  ))}
+                  <Grid.Column>
+                    <BookItem/>
+                  </Grid.Column>
                 </Grid>
               </Segment>
             </Grid.Row>
